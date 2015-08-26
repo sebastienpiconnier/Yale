@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="5.0" ExtensionBundleId="com.spiconnier.photoshoptemplate" ExtensionBundleVersion="1.0.0"
-		ExtensionBundleName="HTML Photoshop Template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest Version="5.0" ExtensionBundleId="com.spiconnier.yale2016" ExtensionBundleVersion="1.0.0"
+		ExtensionBundleName="Yale 2016" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ExtensionList>
-		<Extension Id="com.spiconnier.photoshoptemplate" Version="1.0" />
+		<Extension Id="com.spiconnier.yale2016" Version="1.0" />
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
@@ -34,7 +34,7 @@
 		</RequiredRuntimeList>
 	</ExecutionEnvironment>
 	<DispatchInfoList>
-		<Extension Id="com.spiconnier.photoshoptemplate">
+		<Extension Id="com.spiconnier.yale2016">
 			<DispatchInfo >
 				<Resources>
 				<MainPath>./index.html</MainPath>

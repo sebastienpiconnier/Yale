@@ -19,7 +19,7 @@ It simulates Lomo and Holga cameras. This extension emphasizes casual snapshot p
 “The LOMO LC-A (Lomo Kompakt Automat) is a fixed lens, 35 mm film, leaf shutter, zone focus, compact camera introduced in 1984. The design is based on the Cosina CX-2.
 In 2005, production of the original Lomo LC-A was discontinued. Its replacement, the LC-A+, was introduced in 2006 and production moved to China. The LC-A+ featured the original LC-A lens manufactured by LOMO PLC in Russia. This changed in 2007 and lenses on subsequent models have been made in China.[1] Some LC-As were sold badged as Zenith[2], this label was only a sticker underneath the lens. Zenit (Zenith in some countries) is a trademark of KMZ (Krasnogorsk Mechanical Works).” (wikipedia)
 
-![Lomo example](http://www.myphotoshopeffects.com/wp-content/uploads/2014/05/240dc98c-4c70-4ac4-a17e-8b249793f71f.png) ![Lomo example 2] (http://www.myphotoshopeffects.com/wp-content/uploads/2014/05/240dc98c-4c70-4ac4-a17e-8b249793f71f.png)
+![Lomo example](http://www.myphotoshopeffects.com/wp-content/uploads/2014/05/240dc98c-4c70-4ac4-a17e-8b249793f71f.png) ![Lomo example 2] (http://www.myphotoshopeffects.com/wp-content/uploads/2014/05/df6d9136-73b0-46c7-96c4-63746b0504d2.png)
 
 ##About Holga camera
 

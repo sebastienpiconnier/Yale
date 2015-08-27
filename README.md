@@ -2,7 +2,7 @@
 
 This Github repository is for converting the Flash Panel Yale! into a HTML panel for Photoshop CC and superior.
 
-Originally, **Yale!** is an extension for Photoshop® CS6 & CC*.
+Originally, **Yale!** is an extension for Photoshop® CS6.
 This free extension available on [Adobe Add-ons](https://creative.adobe.com/addons/producers/40) brings a vintage look to your photo. 
 It simulates Lomo and Holga cameras. This extension emphasizes casual snapshot photography.
 

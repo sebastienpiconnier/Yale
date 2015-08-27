@@ -6,6 +6,77 @@ function sayHello(){
     alert("hello from ExtendScript");
 }
 
+function cropImage(wRatio, hRatio) {   
+
+//Display an alert if a document is not opened
+
+if ( app.documents.length <= 0 ) {alert("You must open a document!");}
+
+if (app.documents.length > 0) {    
+
+// Save the state of the document before you do anything.
+var id3 = charIDToTypeID( "Mk  " );
+var desc2 = new ActionDescriptor();
+var id4 = charIDToTypeID( "null" );
+var ref1 = new ActionReference();
+var id5 = charIDToTypeID( "SnpS" );
+ref1.putClass( id5 );
+desc2.putReference( id4, ref1 );
+var id6 = charIDToTypeID( "From" );
+var ref2 = new ActionReference();
+var id7 = charIDToTypeID( "HstS" );
+var id8 = charIDToTypeID( "CrnH" );
+ref2.putProperty( id7, id8 );
+desc2.putReference( id6, ref2 );
+executeAction( id3, desc2, DialogModes.NO );
+
+// beginning of the function for cropping image
+var docRef = app.activeDocument;
+ var WidthRatio = wRatio;
+ var HeightRatio = hRatio;
+ var boundTop;
+ var boundLeft;
+ var boundRight;
+ var boundBottom;
+
+// Image's aspect ratio is greater than the desired ratio
+// so crop out left and right areas of the Image
+if ((docRef.width / docRef.height) > (WidthRatio/ HeightRatio))
+{
+ boundTop = 0;
+ boundLeft = ((docRef.width - (docRef.height * (WidthRatio/HeightRatio))) / 2);
+ boundBottom = docRef.height;
+ boundRight = ((docRef.width + (docRef.height * (WidthRatio/HeightRatio))) / 2);
+ bounds = new Array(boundLeft,boundTop,boundRight,boundBottom);
+ docRef.crop(bounds);
+}
+
+// Image's aspect ratio is less than the desired ratio
+// so crop out top and bottom areas of the Image
+if ((docRef.width / docRef.height) < (WidthRatio/ HeightRatio))
+{
+ boundTop = ((docRef.height - (docRef.width * (HeightRatio/WidthRatio))) / 2);
+ boundLeft = 0;
+ boundBottom = ((docRef.height + (docRef.width * (HeightRatio/WidthRatio))) / 2);
+ boundRight = docRef.width;
+ bounds = new Array(boundLeft,boundTop,boundRight,boundBottom);
+ docRef.crop(bounds);
+}
+
+// bounds = new Array(10, 10, app.activeDocument.width - 10, app.activeDocument.height - 10);
+// docRef.crop(bounds);
+
+ boundTop = null;
+ boundLeft = null;
+ boundRight = null;
+ boundBottom = null;
+ WidthRatio = null;
+ HeightRatio = null;
+ docRef = null;
+
+}
+}
+
 function lomoEffect() {
 // LOMO Effect Photoshop Script
 // v1.1

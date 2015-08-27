@@ -11,8 +11,13 @@
                 
         themeManager.init();
                 
-        $("#btn_test").click(function () {
-            csInterface.evalScript('sayHello()');
+        
+        $("#btn_6x6Film").click(function () {
+            csInterface.evalScript('cropImage(1, 1)');
+        });
+        
+        $("#btn_6x45Film").click(function () {
+            csInterface.evalScript('cropImage(4.5, 6)');
         });
         
         $("#btn_lomo").click(function () {
@@ -23,6 +28,7 @@
             csInterface.evalScript('holgaEffect()');
         });
         
+
     }
         
     init();

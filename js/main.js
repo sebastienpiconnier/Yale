@@ -14,6 +14,11 @@
         $("#btn_test").click(function () {
             csInterface.evalScript('sayHello()');
         });
+        
+        $("#btn_lomo").click(function () {
+            csInterface.evalScript('lomoEffect()');
+        });
+        
     }
         
     init();

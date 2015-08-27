@@ -19,6 +19,10 @@
             csInterface.evalScript('lomoEffect()');
         });
         
+        $("#btn_holga").click(function () {
+            csInterface.evalScript('holgaEffect()');
+        });
+        
     }
         
     init();

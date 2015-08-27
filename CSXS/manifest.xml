@@ -31,17 +31,17 @@
 					<Menu>Yale 2016</Menu>
 					<Geometry>
 						<Size>
-							<Height>300</Height>
-							<Width>300</Width>
+							<Height>570</Height>
+							<Width>220</Width>
 						</Size>
-                    <!--<MinSize>
-                            <Height>550</Height>
-                            <Width>400</Width>
+                    <MinSize>
+                            <Height>570</Height>
+							<Width>220</Width>
                         </MinSize>
                         <MaxSize>
-                            <Height>550</Height>
-                            <Width>400</Width>
-                        </MaxSize>-->
+                            <Height>570</Height>
+							<Width>220</Width>
+                        </MaxSize>
                         
 					</Geometry>
 					<Icons>

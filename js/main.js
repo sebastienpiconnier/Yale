@@ -5,6 +5,7 @@
     'use strict';
 
     var csInterface = new CSInterface();
+    var myPanelPath = csInterface.getSystemPath(SystemPath.EXTENSION);
     
     
     function init() {
@@ -28,6 +29,17 @@
             csInterface.evalScript('holgaEffect()');
         });
         
+        $("#btn_border1").click(function () {
+            csInterface.evalScript('border1()');
+        });
+        
+        $("#btn_white").click(function () {
+            csInterface.evalScript('showWhiteBorder()');
+        });
+        
+        $("#btn_border2").click(function () {
+	       csInterface.evalScript("addBorder('" + myPanelPath + "');");
+        });
 
     }
         

@@ -1909,3 +1909,62 @@ var id1963 = charIDToTypeID( "Mk  " );
     desc442.putObject( id1966, id1976, desc443 );
 executeAction( id1963, desc442, DialogModes.NO );
 }
+
+function border1() {
+// Set Adobe(r) Photoshop(r) to use pixels
+var startRulerUnits = app.preferences.rulerUnits 
+var startTypeUnits = app.preferences.typeUnits 
+
+
+app.preferences.rulerUnits = Units.PIXELS 
+app.preferences.typeUnits = TypeUnits.PIXELS 
+
+// Get a reference to the working document
+var docRef = app.activeDocument;
+
+// Flatten the document
+docRef.flatten();
+
+// Transform background into a layer
+docRef.activeLayer.isBackgroundLayer = false;
+docRef.activeLayer.name = "Original picture";
+				
+// Add a layer and renamed it
+var layerBackground = docRef.artLayers.add();
+layerBackground.name = "White Background";
+layerBackground.moveToEnd(docRef); // move this layer to end 
+
+// Fill the layer with a white colour
+var selRef = app.activeDocument.selection;
+var fillColor = new SolidColor();
+fillColor.rgb.red  = 255;
+fillColor.rgb.green = 255;
+fillColor.rgb.blue = 255;
+selRef.fill( fillColor, ColorBlendMode.NORMAL, 100, false );
+selRef = null;
+fillColor = null;
+
+// Add a another layer and renamed it
+var layerBackground = docRef.artLayers.add();
+layerBackground.name = "Black Background";
+layerBackground.moveToEnd(docRef); // move this layer to end 
+
+// Fill the layer with a black colour
+var selRef = app.activeDocument.selection;
+var fillColor = new SolidColor();
+fillColor.rgb.red  = 0;
+fillColor.rgb.green = 0;
+fillColor.rgb.blue = 0;
+selRef.fill( fillColor, ColorBlendMode.NORMAL, 100, false );
+selRef = null;
+fillColor = null;
+}
+
+function addBorder(inPanelLocation)
+{
+	var idOpn = charIDToTypeID( "Opn " );
+    var desc176 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+    desc176.putPath( idnull, new File( inPanelLocation + "/assets/borders/EFXDAR003.png" ) );
+	executeAction( idOpn, desc176, DialogModes.NO );
+}

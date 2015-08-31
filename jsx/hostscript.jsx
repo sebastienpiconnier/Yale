@@ -2144,3 +2144,17 @@ var idsetd = charIDToTypeID( "setd" );
 executeAction( idsetd, desc7, DialogModes.NO );
 
 }
+
+function showBlackBorder() {
+    showBlackLayer = app.activeDocument.layers.getByName("Black Background");
+    showBlackLayer.visible = true;
+    hideWhiteLayer = app.activeDocument.layers.getByName("White Background");
+    hideWhiteLayer.visible = false;
+}
+
+function showWhiteBorder() {
+    showWhiteLayer = app.activeDocument.layers.getByName("White Background");
+    showWhiteLayer.visible = true;
+    hideBlackLayer = app.activeDocument.layers.getByName("Black Background");
+    hideBlackLayer.visible = false;  
+}

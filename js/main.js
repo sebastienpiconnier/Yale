@@ -33,12 +33,16 @@
             csInterface.evalScript('border1()');
         });
         
-        $("#btn_white").click(function () {
-            csInterface.evalScript('showWhiteBorder()');
-        });
-        
         $("#btn_border2").click(function () {
 	       csInterface.evalScript("addBorder('" + myPanelPath + "');");
+        });
+        
+        $("#btn_black").click(function () {
+            csInterface.evalScript('showBlackBorder()');
+        });
+             
+        $("#btn_white").click(function () {
+            csInterface.evalScript('showWhiteBorder()');
         });
 
     }

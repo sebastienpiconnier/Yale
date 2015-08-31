@@ -77,6 +77,17 @@ if ((docRef.width / docRef.height) < (WidthRatio/ HeightRatio))
 }
 }
 
+function resizeTool() {
+    var idslct = charIDToTypeID( 'slct' );     
+    var desc77 = new ActionDescriptor();     
+    var idnull = charIDToTypeID( 'null' );         
+    var ref77 = new ActionReference();         
+    var idcropTool = stringIDToTypeID( 'cropTool' );         
+    ref77.putClass( idcropTool );     
+    desc77.putReference( idnull, ref77 ); 
+    executeAction( idslct, desc77, DialogModes.ALL );
+}
+
 function lomoEffect() {
 // LOMO Effect Photoshop Script
 // v1.1
@@ -1960,7 +1971,7 @@ selRef = null;
 fillColor = null;
 }
 
-function addBorder(inPanelLocation)
+function addBorder1(inPanelLocation)
 {
     // Set Adobe(r) Photoshop(r) to use pixels
 var startRulerUnits = app.preferences.rulerUnits 
@@ -2014,7 +2025,377 @@ fillColor = null;
 	var idOpn = charIDToTypeID( "Opn " );
     var desc176 = new ActionDescriptor();
     var idnull = charIDToTypeID( "null" );
-    desc176.putPath( idnull, new File( inPanelLocation + "/assets/borders/EFXDAR003.png" ) );
+    desc176.putPath( idnull, new File( inPanelLocation + "/assets/borders/EFXDAR003.png") );
+	executeAction( idOpn, desc176, DialogModes.NO );
+    
+    //get a a reference to the picture
+var maskDoc = app.activeDocument;
+
+//Transform background into a layer and renamed it
+maskDoc.activeLayer.isBackgroundLayer = false;
+maskDoc.activeLayer.name = "Layer mask";
+
+//Determine if the working document is a landscape or portrait format, if it is a landscape the document used to be a mask layer is rotated
+			
+if (docRef.width.value > docRef.height.value)
+			{
+			maskDoc.rotateCanvas(-90);
+			}
+		
+// The document "Layer mask" is resized to fit the working document
+maskDoc.resizeImage (docRef.width, docRef.height);
+
+// Copy the document "Layer mask"
+maskDoc.activeLayer.copy();
+
+// Close the document "Layer mask" without saving it
+maskDoc.close(SaveOptions.DONOTSAVECHANGES);
+    
+    //---------------------------------------------------
+//Add a layer mask 
+//---------------------------------------------------
+var idslct = charIDToTypeID( "slct" );
+    var desc1 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref1 = new ActionReference();
+        var idLyr = charIDToTypeID( "Lyr " );
+        ref1.putName( idLyr, "Original picture" );
+    desc1.putReference( idnull, ref1 );
+    var idMkVs = charIDToTypeID( "MkVs" );
+    desc1.putBoolean( idMkVs, false );
+executeAction( idslct, desc1, DialogModes.NO );
+
+//---------------------------------------------------
+var idMk = charIDToTypeID( "Mk  " );
+    var desc2 = new ActionDescriptor();
+    var idNw = charIDToTypeID( "Nw  " );
+    var idChnl = charIDToTypeID( "Chnl" );
+    desc2.putClass( idNw, idChnl );
+    var idAt = charIDToTypeID( "At  " );
+        var ref2 = new ActionReference();
+        var idChnl = charIDToTypeID( "Chnl" );
+        var idChnl = charIDToTypeID( "Chnl" );
+        var idMsk = charIDToTypeID( "Msk " );
+        ref2.putEnumerated( idChnl, idChnl, idMsk );
+    desc2.putReference( idAt, ref2 );
+    var idUsng = charIDToTypeID( "Usng" );
+    var idUsrM = charIDToTypeID( "UsrM" );
+    var idHdAl = charIDToTypeID( "HdAl" );
+    desc2.putEnumerated( idUsng, idUsrM, idHdAl );
+executeAction( idMk, desc2, DialogModes.NO );
+
+//---------------------------------------------------
+var idShw = charIDToTypeID( "Shw " );
+    var desc3 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var list1 = new ActionList();
+            var ref3 = new ActionReference();
+            var idChnl = charIDToTypeID( "Chnl" );
+            var idOrdn = charIDToTypeID( "Ordn" );
+            var idTrgt = charIDToTypeID( "Trgt" );
+            ref3.putEnumerated( idChnl, idOrdn, idTrgt );
+        list1.putReference( ref3 );
+    desc3.putList( idnull, list1 );
+executeAction( idShw, desc3, DialogModes.NO );
+
+//---------------------------------------------------
+var idpast = charIDToTypeID( "past" );
+    var desc4 = new ActionDescriptor();
+    var idAntA = charIDToTypeID( "AntA" );
+    var idAnnt = charIDToTypeID( "Annt" );
+    var idAnno = charIDToTypeID( "Anno" );
+    desc4.putEnumerated( idAntA, idAnnt, idAnno );
+executeAction( idpast, desc4, DialogModes.NO );
+
+//---------------------------------------------------
+var idsetd = charIDToTypeID( "setd" );
+    var desc5 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref4 = new ActionReference();
+        var idChnl = charIDToTypeID( "Chnl" );
+        var idfsel = charIDToTypeID( "fsel" );
+        ref4.putProperty( idChnl, idfsel );
+    desc5.putReference( idnull, ref4 );
+    var idT = charIDToTypeID( "T   " );
+    var idOrdn = charIDToTypeID( "Ordn" );
+    var idNone = charIDToTypeID( "None" );
+    desc5.putEnumerated( idT, idOrdn, idNone );
+executeAction( idsetd, desc5, DialogModes.NO );
+
+//---------------------------------------------------
+var idHd = charIDToTypeID( "Hd  " );
+    var desc6 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var list2 = new ActionList();
+            var ref5 = new ActionReference();
+            var idChnl = charIDToTypeID( "Chnl" );
+            var idOrdn = charIDToTypeID( "Ordn" );
+            var idTrgt = charIDToTypeID( "Trgt" );
+            ref5.putEnumerated( idChnl, idOrdn, idTrgt );
+        list2.putReference( ref5 );
+    desc6.putList( idnull, list2 );
+executeAction( idHd, desc6, DialogModes.NO );
+
+//---------------------------------------------------
+var idsetd = charIDToTypeID( "setd" );
+    var desc7 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref6 = new ActionReference();
+        var idLyr = charIDToTypeID( "Lyr " );
+        var idOrdn = charIDToTypeID( "Ordn" );
+        var idTrgt = charIDToTypeID( "Trgt" );
+        ref6.putEnumerated( idLyr, idOrdn, idTrgt );
+    desc7.putReference( idnull, ref6 );
+    var idT = charIDToTypeID( "T   " );
+        var desc8 = new ActionDescriptor();
+        var idUsrs = charIDToTypeID( "Usrs" );
+        desc8.putBoolean( idUsrs, false );
+    var idLyr = charIDToTypeID( "Lyr " );
+    desc7.putObject( idT, idLyr, desc8 );
+executeAction( idsetd, desc7, DialogModes.NO );
+
+}
+
+function addBorder2(inPanelLocation)
+{
+    // Set Adobe(r) Photoshop(r) to use pixels
+var startRulerUnits = app.preferences.rulerUnits 
+var startTypeUnits = app.preferences.typeUnits 
+
+
+app.preferences.rulerUnits = Units.PIXELS 
+app.preferences.typeUnits = TypeUnits.PIXELS 
+
+// Get a reference to the working document
+var docRef = app.activeDocument;
+
+// Flatten the document
+docRef.flatten();
+
+// Transform background into a layer
+docRef.activeLayer.isBackgroundLayer = false;
+docRef.activeLayer.name = "Original picture";
+				
+// Add a layer and renamed it
+var layerBackground = docRef.artLayers.add();
+layerBackground.name = "White Background";
+layerBackground.moveToEnd(docRef); // move this layer to end 
+
+// Fill the layer with a white colour
+var selRef = app.activeDocument.selection;
+var fillColor = new SolidColor();
+fillColor.rgb.red  = 255;
+fillColor.rgb.green = 255;
+fillColor.rgb.blue = 255;
+selRef.fill( fillColor, ColorBlendMode.NORMAL, 100, false );
+selRef = null;
+fillColor = null;
+
+// Add a another layer and renamed it
+var layerBackground = docRef.artLayers.add();
+layerBackground.name = "Black Background";
+layerBackground.moveToEnd(docRef); // move this layer to end 
+
+// Fill the layer with a black colour
+var selRef = app.activeDocument.selection;
+var fillColor = new SolidColor();
+fillColor.rgb.red  = 0;
+fillColor.rgb.green = 0;
+fillColor.rgb.blue = 0;
+selRef.fill( fillColor, ColorBlendMode.NORMAL, 100, false );
+selRef = null;
+fillColor = null;
+    
+    ///open border
+	var idOpn = charIDToTypeID( "Opn " );
+    var desc176 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+    desc176.putPath( idnull, new File( inPanelLocation + "/assets/borders/EFXDAR014.png") );
+	executeAction( idOpn, desc176, DialogModes.NO );
+    
+    //get a a reference to the picture
+var maskDoc = app.activeDocument;
+
+//Transform background into a layer and renamed it
+maskDoc.activeLayer.isBackgroundLayer = false;
+maskDoc.activeLayer.name = "Layer mask";
+
+//Determine if the working document is a landscape or portrait format, if it is a landscape the document used to be a mask layer is rotated
+			
+if (docRef.width.value > docRef.height.value)
+			{
+			maskDoc.rotateCanvas(-90);
+			}
+		
+// The document "Layer mask" is resized to fit the working document
+maskDoc.resizeImage (docRef.width, docRef.height);
+
+// Copy the document "Layer mask"
+maskDoc.activeLayer.copy();
+
+// Close the document "Layer mask" without saving it
+maskDoc.close(SaveOptions.DONOTSAVECHANGES);
+    
+    //---------------------------------------------------
+//Add a layer mask 
+//---------------------------------------------------
+var idslct = charIDToTypeID( "slct" );
+    var desc1 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref1 = new ActionReference();
+        var idLyr = charIDToTypeID( "Lyr " );
+        ref1.putName( idLyr, "Original picture" );
+    desc1.putReference( idnull, ref1 );
+    var idMkVs = charIDToTypeID( "MkVs" );
+    desc1.putBoolean( idMkVs, false );
+executeAction( idslct, desc1, DialogModes.NO );
+
+//---------------------------------------------------
+var idMk = charIDToTypeID( "Mk  " );
+    var desc2 = new ActionDescriptor();
+    var idNw = charIDToTypeID( "Nw  " );
+    var idChnl = charIDToTypeID( "Chnl" );
+    desc2.putClass( idNw, idChnl );
+    var idAt = charIDToTypeID( "At  " );
+        var ref2 = new ActionReference();
+        var idChnl = charIDToTypeID( "Chnl" );
+        var idChnl = charIDToTypeID( "Chnl" );
+        var idMsk = charIDToTypeID( "Msk " );
+        ref2.putEnumerated( idChnl, idChnl, idMsk );
+    desc2.putReference( idAt, ref2 );
+    var idUsng = charIDToTypeID( "Usng" );
+    var idUsrM = charIDToTypeID( "UsrM" );
+    var idHdAl = charIDToTypeID( "HdAl" );
+    desc2.putEnumerated( idUsng, idUsrM, idHdAl );
+executeAction( idMk, desc2, DialogModes.NO );
+
+//---------------------------------------------------
+var idShw = charIDToTypeID( "Shw " );
+    var desc3 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var list1 = new ActionList();
+            var ref3 = new ActionReference();
+            var idChnl = charIDToTypeID( "Chnl" );
+            var idOrdn = charIDToTypeID( "Ordn" );
+            var idTrgt = charIDToTypeID( "Trgt" );
+            ref3.putEnumerated( idChnl, idOrdn, idTrgt );
+        list1.putReference( ref3 );
+    desc3.putList( idnull, list1 );
+executeAction( idShw, desc3, DialogModes.NO );
+
+//---------------------------------------------------
+var idpast = charIDToTypeID( "past" );
+    var desc4 = new ActionDescriptor();
+    var idAntA = charIDToTypeID( "AntA" );
+    var idAnnt = charIDToTypeID( "Annt" );
+    var idAnno = charIDToTypeID( "Anno" );
+    desc4.putEnumerated( idAntA, idAnnt, idAnno );
+executeAction( idpast, desc4, DialogModes.NO );
+
+//---------------------------------------------------
+var idsetd = charIDToTypeID( "setd" );
+    var desc5 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref4 = new ActionReference();
+        var idChnl = charIDToTypeID( "Chnl" );
+        var idfsel = charIDToTypeID( "fsel" );
+        ref4.putProperty( idChnl, idfsel );
+    desc5.putReference( idnull, ref4 );
+    var idT = charIDToTypeID( "T   " );
+    var idOrdn = charIDToTypeID( "Ordn" );
+    var idNone = charIDToTypeID( "None" );
+    desc5.putEnumerated( idT, idOrdn, idNone );
+executeAction( idsetd, desc5, DialogModes.NO );
+
+//---------------------------------------------------
+var idHd = charIDToTypeID( "Hd  " );
+    var desc6 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var list2 = new ActionList();
+            var ref5 = new ActionReference();
+            var idChnl = charIDToTypeID( "Chnl" );
+            var idOrdn = charIDToTypeID( "Ordn" );
+            var idTrgt = charIDToTypeID( "Trgt" );
+            ref5.putEnumerated( idChnl, idOrdn, idTrgt );
+        list2.putReference( ref5 );
+    desc6.putList( idnull, list2 );
+executeAction( idHd, desc6, DialogModes.NO );
+
+//---------------------------------------------------
+var idsetd = charIDToTypeID( "setd" );
+    var desc7 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref6 = new ActionReference();
+        var idLyr = charIDToTypeID( "Lyr " );
+        var idOrdn = charIDToTypeID( "Ordn" );
+        var idTrgt = charIDToTypeID( "Trgt" );
+        ref6.putEnumerated( idLyr, idOrdn, idTrgt );
+    desc7.putReference( idnull, ref6 );
+    var idT = charIDToTypeID( "T   " );
+        var desc8 = new ActionDescriptor();
+        var idUsrs = charIDToTypeID( "Usrs" );
+        desc8.putBoolean( idUsrs, false );
+    var idLyr = charIDToTypeID( "Lyr " );
+    desc7.putObject( idT, idLyr, desc8 );
+executeAction( idsetd, desc7, DialogModes.NO );
+
+}
+
+function addBorder3(inPanelLocation)
+{
+    // Set Adobe(r) Photoshop(r) to use pixels
+var startRulerUnits = app.preferences.rulerUnits 
+var startTypeUnits = app.preferences.typeUnits 
+
+
+app.preferences.rulerUnits = Units.PIXELS 
+app.preferences.typeUnits = TypeUnits.PIXELS 
+
+// Get a reference to the working document
+var docRef = app.activeDocument;
+
+// Flatten the document
+docRef.flatten();
+
+// Transform background into a layer
+docRef.activeLayer.isBackgroundLayer = false;
+docRef.activeLayer.name = "Original picture";
+				
+// Add a layer and renamed it
+var layerBackground = docRef.artLayers.add();
+layerBackground.name = "White Background";
+layerBackground.moveToEnd(docRef); // move this layer to end 
+
+// Fill the layer with a white colour
+var selRef = app.activeDocument.selection;
+var fillColor = new SolidColor();
+fillColor.rgb.red  = 255;
+fillColor.rgb.green = 255;
+fillColor.rgb.blue = 255;
+selRef.fill( fillColor, ColorBlendMode.NORMAL, 100, false );
+selRef = null;
+fillColor = null;
+
+// Add a another layer and renamed it
+var layerBackground = docRef.artLayers.add();
+layerBackground.name = "Black Background";
+layerBackground.moveToEnd(docRef); // move this layer to end 
+
+// Fill the layer with a black colour
+var selRef = app.activeDocument.selection;
+var fillColor = new SolidColor();
+fillColor.rgb.red  = 0;
+fillColor.rgb.green = 0;
+fillColor.rgb.blue = 0;
+selRef.fill( fillColor, ColorBlendMode.NORMAL, 100, false );
+selRef = null;
+fillColor = null;
+    
+    ///open border
+	var idOpn = charIDToTypeID( "Opn " );
+    var desc176 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+    desc176.putPath( idnull, new File( inPanelLocation + "/assets/borders/EFXDAR021.png") );
 	executeAction( idOpn, desc176, DialogModes.NO );
     
     //get a a reference to the picture
